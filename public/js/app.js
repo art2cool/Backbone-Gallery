@@ -31,7 +31,7 @@ var AppRouter = Backbone.Router.extend({
 
 				var namefile = 'alliance.png';
 					var upload = new AjaxUpload('#userfile', { 
-					action: '/api/photo', 
+					action: '/slides/new', 
 				onSubmit : function(file, extension){ 
 					namefile = '' + file;
 

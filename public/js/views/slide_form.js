@@ -31,27 +31,26 @@ var SlideForm = Backbone.View.extend({
 		return this;
 	},
 	save: function () {
-	this.setModelData();
-	this.model.save(this.model.attributes, 
-		{
-			success: function (model) {
-				app.list.add(model);
-				app.navigate('slides/' + model.get('url'), {trigger: true});
+		this.setModelData();
+		console.log(this.model.get('url'));
+		this.model.save(this.model.attributes, 
+			{
+				success: function (model) {
+					
+					app.list.add(model);
+					app.navigate('slides/' + model.get('url'), {trigger: true});
+				}
 			}
-		}
-	);
-	},
+		);
+		},
 
 	setModelData: function  () {
-
-		
-		
 		this.model.set({
 			id: null,
 			name: this.$el.find('input[name="name"]').val(),
 			note: this.$el.find('input[name="note"]').val(),
 			url: this.$el.find('input[name="url"]').val(),
-			//img: this.$el.find('input[name="userfile"]').val()
+			img: $('#userfile').val().replace(/.*(\/|\\)/, '')
 		});
 	//	console.log(this.model.get('img'));
 	}

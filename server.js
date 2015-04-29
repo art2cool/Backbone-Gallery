@@ -6,14 +6,10 @@ var express = require('express'),
   var multer = require('multer');
 
 var done = false;
-var FName = '';
 
 var app = express()
   // .use(express.bodyParser())
   .use(express.static('public'));
-
-
-
 
 app.use(multer({ dest: './public/images/',
  rename: function (fieldname, filename) {
@@ -31,9 +27,10 @@ app.get('/slides', function  (req, res) {
   res.json(slides);
 });
 
-app.post('/api/photo',function(req,res){
+app.post('/slides/new',function(req,res){
  
   if(done==true){
+    //send rename file
   	res.end('VASA');
   }
 });
