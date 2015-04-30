@@ -17,7 +17,10 @@ var SlideForm = Backbone.View.extend({
 				'<div class="control-group">' +
 					'<input type="text" name="url" placeholder="URL" />' +
 				'</div>' +
-				'<button type="button" class="btn btn-danger">Cancel</button>' +
+				'<div class="control-group">' +
+					'<input type="text" name="img" placeholder="IMG" />' +
+				'</div>' +
+								'<button type="button" class="btn btn-danger">Cancel</button>' +
 				'<button type="button" class="btn btn-primary">Save</button>' +
 			'</fieldset>' +
 		'</form>'
@@ -28,11 +31,12 @@ var SlideForm = Backbone.View.extend({
 		this.delegateEvents({
 			'click .btn-primary': 'save'
 		});
+
 		return this;
 	},
 	save: function () {
 		this.setModelData();
-		console.log(this.model.get('url'));
+		
 		this.model.save(this.model.attributes, 
 			{
 				success: function (model) {
@@ -45,14 +49,15 @@ var SlideForm = Backbone.View.extend({
 		},
 
 	setModelData: function  () {
+
 		this.model.set({
-			id: null,
 			name: this.$el.find('input[name="name"]').val(),
 			note: this.$el.find('input[name="note"]').val(),
+			id: null,
 			url: this.$el.find('input[name="url"]').val(),
-			img: $('#userfile').val().replace(/.*(\/|\\)/, '')
+			img: this.$el.find('input[name="img"]').val(),
 		});
-	//	console.log(this.model.get('img'));
+		console.log(this.model.attributes);
 	}
 
 });
