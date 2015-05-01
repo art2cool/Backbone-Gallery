@@ -36,14 +36,14 @@ var SlideForm = Backbone.View.extend({
 	},
 	save: function () {
 		this.setModelData();
-		
-		this.model.save(this.model.attributes, 
+		var data = this.model.attributes;
+		this.model.save(data, 
 			{
 				success: function (model) {
-					
 					app.list.add(model);
 					app.navigate('slides/' + model.get('url'), {trigger: true});
 				}
+			
 			}
 		);
 		},
@@ -54,10 +54,9 @@ var SlideForm = Backbone.View.extend({
 			name: this.$el.find('input[name="name"]').val(),
 			note: this.$el.find('input[name="note"]').val(),
 			id: null,
-			url: this.$el.find('input[name="url"]').val(),
+			url: this.$el.find('input[name="name"]').val(),
 			img: this.$el.find('input[name="img"]').val(),
 		});
-		console.log(this.model.attributes);
 	}
 
 });

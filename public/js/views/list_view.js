@@ -14,6 +14,7 @@ var ListView = Backbone.View.extend({
 	render: function () {
 		this.$el.html(this.template(this.collection));
 		return this;
+		console.log(app.list.toJSON());
 	}
 
 });

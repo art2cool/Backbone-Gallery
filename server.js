@@ -31,6 +31,7 @@ http.createServer(app).listen(app.get('port'),  function() {
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended : false }));
+app.use(bodyParser.json());
 
 app.use('/', routes);
 
@@ -38,6 +39,27 @@ app.post('/api/photo', function (req, res) {
   if(done==true){
     res.end("File uploaded. Good boy");
   }
+});
+
+
+
+app.post('/slides', function(req, res) {
+ var matches = data.filter(function  (slide) {
+    return slide.url === req.body.url;
+  });
+
+  if (matches.length > 0) {
+    res.json(409, {status: 'slide already exists'});
+  } else {
+    req.body.id = req.body.url;
+    data.push(req.body);
+     var str = JSON.stringify(data);
+     fs.writeFile('./public/data2.json', str, function (err) {
+    });
+
+    res.json(req.body);
+  }
+
 });
 
 
@@ -52,6 +74,7 @@ app.get('/slides/:slide_name', function  (req, res) {
   }
 });
 });
+
  app.delete('/slides/:slide_name', function (req, res) {
   var found = false;
   data.forEach(function (slide, index) {
@@ -61,11 +84,10 @@ app.get('/slides/:slide_name', function  (req, res) {
      }
   });
 
-  if (found) {
+  if (found || found === 0) {
     data.splice(found, 1);
     var str = JSON.stringify(data);
      fs.writeFile('./public/data2.json', str, function (err) {
-    console.log(err);
   });
   res.json(200, {status: 'deleted'});
 } else {
@@ -73,24 +95,8 @@ app.get('/slides/:slide_name', function  (req, res) {
 }
 });
 
-// app.post('/add', function(req, res) {
-//   var title   = req.body.title;
-//   var img = req.body.img;
-//   fs.readFile('./public/data2.json', function(error, data){
-//     var objdata = JSON.parse(data);
-//     var keyb = 0;
-//       for (var key in objdata){
-//         if (parseInt(key) > keyb) keyb = key;
-//       }
-//       keyb++;
 
-//     objdata[keyb] = {"idN": keyb, "title" : title, "img" : img};
-//     var str = JSON.stringify(objdata);
-//     fs.writeFile('./public/data2.json', str , function(err) {
-//     });
-//   });
-// res.end('keyb');
-// });
+
 
 app.use(function(req, res) {
   var err = new Error('Not Found');
