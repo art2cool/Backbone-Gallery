@@ -53,7 +53,7 @@ var AppRouter = Backbone.Router.extend({
 
 		},
 	slideDetails: function (slide) {
-		this.slideView.model = this.list.get(slide);
+		this.slideView.model = this.list.get(slide)
 		$('#app').html(this.slideView.render().el);
 	},
 
