@@ -20,7 +20,7 @@ var SlideForm = Backbone.View.extend({
 				'<div class="control-group">' +
 					'<input type="text" name="img" placeholder="IMG" />' +
 				'</div>' +
-								'<button type="button" class="btn btn-danger">Cancel</button>' +
+					'<button type="button" class="btn btn-danger">Cancel</button>' +
 				'<button type="button" class="btn btn-primary">Save</button>' +
 			'</fieldset>' +
 		'</form>'

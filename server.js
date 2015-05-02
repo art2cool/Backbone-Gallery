@@ -28,7 +28,7 @@ http.createServer(app).listen(app.get('port'),  function() {
 });
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended : false }));
 app.use(bodyParser.json());
@@ -69,7 +69,9 @@ app.get('/slides', function(req, res) {
 
 app.get('/slides/:slide_name', function  (req, res) {
  data.forEach(function (slide, index) {
+  console.log(req.params.slide_name + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
   if (slide.url == req.params.slide_name) {
+
     res.json(data[index]);
   }
 });

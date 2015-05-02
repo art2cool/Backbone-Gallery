@@ -1,7 +1,7 @@
 var ListView = Backbone.View.extend({
 
 	template: Handlebars.compile(
-		'<div style="width:150px">{{#each models}}<div><a href="#/slides/{{attributes.name}}">'+
+		'<div style="width:600px">{{#each models}}<div style="width:150px"><a href="#/slides/{{attributes.name}}">'+
 		'{{attributes.note}}<img src="images/{{attributes.img}}" class="img-polaroid" /></a>'+
 		'</div>{{/each}}' +
 		'</div>'
@@ -12,9 +12,9 @@ var ListView = Backbone.View.extend({
 		this.listenTo(this.collection, "remove", this.render);
 	},
 	render: function () {
+		console.log('render list');
 		this.$el.html(this.template(this.collection));
 		return this;
-		console.log(app.list.toJSON());
 	}
 
 });

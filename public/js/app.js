@@ -18,6 +18,8 @@ var AppRouter = Backbone.Router.extend({
 		this.listView = new ListView({ collection: this.list });
 		
 		this.slideForm = new SlideForm({model: new SlideModel()});
+
+		this.slideShow = new SlideShowView({ collection: this.list });
 		},
 
 	list: function () {
@@ -56,7 +58,8 @@ var AppRouter = Backbone.Router.extend({
 	},
 
 	slideShow: function () {
-		$('#app').html('slideShow');
+
+		$('#app').html(this.slideShow.render().el);
 	}
 });
 

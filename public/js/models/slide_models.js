@@ -4,7 +4,6 @@ var SlideModel = Backbone.Model.extend({
 			name: 'empty',
 			note: 'kiss you wife',
 			img: 'alliance.png',
-			url: 'alliance',
-
+		
 		}
 	}); 
