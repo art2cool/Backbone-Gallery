@@ -1,29 +1,30 @@
+define([
+//lib
+	'backbone',
+	'handlebars'
+	//dep
+	
+	], function (Backbone, Handlebars) {
+
 var SlideForm = Backbone.View.extend({
 
 	template: Handlebars.compile(
-		
+		'<div class="row">'+
+		'<div class="col-lg-4 col-md-5 col-sm-6"> '+
 		'<legend>New Slide Item</legend>'+
-				'<div class="control-group"><input id="userfile"  type="file" name="userfile"  />'+
+				'<input class="form-control" id="userfile"  type="file" name="userfile"  />'+
 				'<div id="file_holder"></div></div>'+
-
-		'<form class="form-horizontal">' +
+		'<div class="col-lg-3 col-md-4 col-sm-5"></br></br>'+
+		'<form class="form-group-md ">' +
 			'<fieldset>' +
-				 '<div class="control-group">' +
-					'<input type="text" name="name" placeholder="Name" />' +
-				'</div>' +
-				'<div class="control-group">' +
-					'<input type="text" name="note" placeholder="Note" />' +
-				'</div>' +
-				'<div class="control-group">' +
-					'<input type="text" name="url" placeholder="URL" />' +
-				'</div>' +
-				'<div class="control-group">' +
-					'<input type="text" name="img" placeholder="IMG" />' +
-				'</div>' +
-					'<button type="button" class="btn btn-danger">Cancel</button>' +
+				'<input class="form-control" type="text" name="name" placeholder="Name" /><p></p>' +
+				'<input class="form-control" type="text" name="note" placeholder="Note" /><p></p>' +
+				'<input class="form-control" type="text" name="url" placeholder="URL" /><p></p>' +
+				'<input class="form-control" type="text" name="img" placeholder="IMG" /><p></p>' +
+				'<button type="button" class="btn btn-danger">Cancel</button>' +
 				'<button type="button" class="btn btn-primary">Save</button>' +
 			'</fieldset>' +
-		'</form>'
+		'</form><div></div>'
 	),
 
 	render: function  () {
@@ -36,12 +37,14 @@ var SlideForm = Backbone.View.extend({
 	},
 	save: function () {
 		this.setModelData();
+		var that = this;
 		var data = this.model.attributes;
 		this.model.save(data, 
 			{
 				success: function (model) {
-					app.list.add(model);
-					app.navigate('slides/' + model.get('url'), {trigger: true});
+					console.log('uoplasdfsdf');
+					that.collection.add(model);
+					Backbone.history.navigate('slides/' + model.get('url'), {trigger: true});
 				}
 			
 			}
@@ -60,4 +63,6 @@ var SlideForm = Backbone.View.extend({
 	}
 
 });
+return SlideForm;
 
+});

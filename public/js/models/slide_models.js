@@ -1,3 +1,10 @@
+define([
+// lib
+	'backbone',
+//deps
+
+	], function (Backbone) {
+	
 var SlideModel = Backbone.Model.extend({
 	urlRoot: '/slides',
 		defaults: {
@@ -7,3 +14,6 @@ var SlideModel = Backbone.Model.extend({
 		
 		}
 	}); 
+
+return SlideModel;
+}); 

@@ -1,12 +1,22 @@
+define([
+//lib
+	'backbone',
+	'handlebars',
+	//dep
+	'app'
+
+	], function (Backbone, Handlebars, app) {
+
 var SlideView = Backbone.View.extend({
 	template: Handlebars.compile(
-		'<div style="width:400px;">' +
+		'<div class="row"><div class="col-lg-9 col-md-10">' +
 		'<h1>{{name}}</h1>' +
 		'<p><span class="label">{{note}}</span></p>' +
-		'<img src="images/{{img}}" class="img-polaroid" />' +
-		'</div>'+
+		'<img src="images/{{img}}" class="img-thumbnail img-responsive" />' +
+		'</div></div>'+
 	'<p></p>' +
-	'<button type="button" class="btn btn-danger confirm-delete">Delete</button>'
+	'<button type="button" class="btn btn-danger confirm-delete">Delete</button>'+
+	'<button type="button" class="btn btn-primary confirm-edit">Edit</button>'
 	),
 	initialize: function () {
 		this.listenTo(this.model, "change", this.render);
@@ -15,11 +25,13 @@ var SlideView = Backbone.View.extend({
 	
 
 	deleteItem: function () {
+		var that = this;
 		this.model.destroy(
 			{
 				success: function (model) {
-					app.list.remove(model.get('id'));
-					app.navigate("", {trigger: true} );
+					Backbone.history.navigate('', {trigger: true})
+					//that.collection.remove(model.get('id'));
+				
 				}
 			}
 		);
@@ -33,4 +45,6 @@ var SlideView = Backbone.View.extend({
 		return this;
 	},
 
+});
+	return SlideView;
 });

@@ -1,6 +1,16 @@
+define([
+//lib
+	'jquery',
+	'backbone',
+	'handlebars',
+	//dep
+	
+
+	], function ($, Backbone, Handlebars) {
+
 var ViewSlide = Backbone.View.extend({
 	template2: Handlebars.compile(
-			'<img class="img-polaroid" src="images/{{attributes.img}}" style="max-width:560px; max-height:300px;">'
+			'<img src="images/{{attributes.img}}" style="max-width:560px; max-height:300px;">'
 
 	),
 	render: function () {
@@ -14,11 +24,13 @@ var ViewSlide = Backbone.View.extend({
 
 	}
 });
+
+
 var iDinter;
 var SlideShowView = Backbone.View.extend({
 	template1: Handlebars.compile(
 	'<div style="float:left;" align="center">'+
-		'<div id="player" class="img-polaroid" style=" margin-top: 10px; width: 600px; height:310px"><div></div>'+
+		'<div id="player" class="img-thumbnail" style=" margin-top: 10px; width: 600px; height:310px"><div></div>'+
 		'</div>'+
 		'<br /><input class="btn btn-primary" type="button" id="play" value="Play">'+
 		'<input class="btn btn-primary" type="button" id="stop" value="Stop">'+
@@ -62,4 +74,6 @@ var SlideShowView = Backbone.View.extend({
 
 	}
 
+});
+	return SlideShowView;
 });
