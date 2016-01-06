@@ -1,5 +1,3 @@
-[Перенесення галереї]
+Get start with backbone
 
-по мотивам lynda.com Get start with backbone
-
-в майбутньому використано буде require.JS
+Used require.JS
